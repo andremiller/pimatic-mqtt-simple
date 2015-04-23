@@ -30,7 +30,7 @@ module.exports = (env) ->
 
   # ###MyPlugin class
   # Create a class that extends the Plugin class and implements the following functions:
-  class MqttPlugin extends env.plugins.Plugin
+  class MqttSimplePlugin extends env.plugins.Plugin
 
     # ####init()
     # The `init` function is called by the framework to ask your plugin to initialise.
@@ -45,12 +45,12 @@ module.exports = (env) ->
     init: (app, @framework, @config) =>
       deviceConfigDef = require("./device-config-schema")
 
-      @framework.deviceManager.registerDeviceClass("MqttSensor", {
-        configDef: deviceConfigDef.MqttSensor,
-        createCallback: (config) => return new MqttSensor(config)
+      @framework.deviceManager.registerDeviceClass("MqttSimpleSensor", {
+        configDef: deviceConfigDef.MqttSimpleSensor,
+        createCallback: (config) => return new MqttSimpleSensor(config)
       })
 
-  class MqttSensor extends env.devices.Sensor
+  class MqttSimpleSensor extends env.devices.Sensor
     constructor: (@config) ->
       @name = config.name
       @id = config.id
@@ -118,6 +118,6 @@ module.exports = (env) ->
 
   # ###Finally
   # Create a instance of my plugin
-  mqttPlugin = new MqttPlugin
+  mqttSimplePlugin = new MqttSimplePlugin
   # and return it to the framework.
-  return mqttPlugin
+  return mqttSimplePlugin

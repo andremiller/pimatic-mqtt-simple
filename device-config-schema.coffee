@@ -1,9 +1,9 @@
 # #my-plugin configuration options
 # Declare your config option for your plugin here. 
 module.exports = {
-  title: "MqttSensor device config schema"
-  MqttSensor: {
-    title: "MqttSensor config options"
+  title: "MqttSimpleSensor device config schema"
+  MqttSimpleSensor: {
+    title: "MqttSimpleSensor config options"
     type: "object"
     properties:
       mqtturl:
