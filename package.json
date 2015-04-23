@@ -1,0 +1,28 @@
+{ "name": "pimatic-andremiller-mqtt",
+  "description": "MQTT Plugin for Pimatic",
+  "author": "Andre Miller (http://www.andremiller.net)",
+  "main": "andremiller-mqtt",
+  "files": [
+    "andremiller-mqtt.coffee",
+    "README.md",
+    "andremiller-mqtt-config-schema.coffee"
+  ],
+  "version": "0.1.0",
+  "homepage": "http://www.andremiller.net",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andremiller/pimatic-andremiller-mqtt.git"
+  },
+  "configSchema": "andremiller-mqtt-config-schema.coffee",
+  "dependencies": {
+    "mqtt": ">=1.1.x"
+  },
+  "peerDependencies": {
+    "pimatic": "0.8.*"
+  },
+  "engines": {
+    "node": ">0.8.x",
+    "npm": ">1.1.x"
+  }
+}
