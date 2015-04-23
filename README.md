@@ -1,5 +1,5 @@
-pimatic-andremiller-mqtt
-========================
+pimatic-mqtt-simple
+===================
 
 A very basic mqtt plugin for [Pimatic](http://www.pimatic.org/)
 
