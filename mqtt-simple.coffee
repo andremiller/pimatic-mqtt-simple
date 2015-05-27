@@ -86,7 +86,10 @@ module.exports = (env) ->
               @mqttvars[topic] = message.toString()
               # Emit the new value
               if attr.type == 'number'
-                @emit attr.name, Number(message)
+                if attr.division
+                  @emit attr.name, Number(message) / attr.division
+                else  
+                  @emit attr.name, Number(message)
               else
                 @emit attr.name, message
       )
@@ -103,6 +106,7 @@ module.exports = (env) ->
           @attributes[name].unit = attr.unit or ''
           @attributes[name].discrete = attr.discrete or false
           @attributes[name].acronym = attr.acronym or null
+          @attributes[name].division = attr.division or 1
 
           getter = ( =>
             if attr.type == 'number'
