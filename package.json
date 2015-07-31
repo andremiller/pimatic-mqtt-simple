@@ -1,6 +1,7 @@
-{ "name": "pimatic-mqtt-simple",
+{ 
+  "name": "pimatic-mqtt-simple",
   "description": "Simple MQTT Plugin for Pimatic",
-  "author": "Andre Miller (http://www.andremiller.net)",
+  "author": "Andre Miller <npmjs@andremiller.net>",
   "main": "mqtt-simple",
   "files": [
     "mqtt-simple.coffee",
@@ -10,7 +11,6 @@
   ],
   "version": "0.1.0",
   "homepage": "http://www.andremiller.net",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/andremiller/pimatic-mqtt-simple.git"
