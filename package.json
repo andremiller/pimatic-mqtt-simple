@@ -9,7 +9,7 @@
     "mqtt-simple-config-schema.coffee",
     "device-config-schema.coffee"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "http://www.andremiller.net",
   "repository": {
     "type": "git",
