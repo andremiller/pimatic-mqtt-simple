@@ -5,10 +5,8 @@ A very basic mqtt plugin for [Pimatic](http://www.pimatic.org/)
 
 Installation
 ------------
-Clone this repository into your pimatic-app/node_modules (so you end up with pimatic-app/node_modules/pimatic-mqtt-simple/package.json)
+Edit your config.json as below, and once you restart pimatic the plugin will be downloaded automatically from npm.
 
-In the pimatic-mqtt-simple directory run:
-`npm install`
 
 Usage
 -----
