@@ -91,7 +91,7 @@ module.exports = (env) ->
                 else  
                   @emit attr.name, Number(message)
               else
-                @emit attr.name, message
+                @emit attr.name, message.toString()
       )
 
       for attr, i in @config.attributes
