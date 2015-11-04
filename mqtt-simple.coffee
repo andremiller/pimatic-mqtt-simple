@@ -85,13 +85,25 @@ module.exports = (env) ->
               #console.log(topic + ": " + message.toString())
               @mqttvars[topic] = message.toString()
               # Emit the new value
-              if attr.type == 'number'
-                if attr.division
-                  @emit attr.name, Number(message) / attr.division
-                else  
-                  @emit attr.name, Number(message)
-              else
-                @emit attr.name, message.toString()
+              try data = JSON.parse(message)
+              if data?
+                if data then for key, value of data
+                  if key == attr.name
+                    if attr.type == 'number'
+                      if attr.division
+                        @emit attr.name, Number("#{value}") / attr.division
+                      else
+                        @emit attr.name, Number("#{value}")
+                    else
+                      @emit "#{key}: #{value}"
+                else
+                  if attr.type == 'number'
+                    if attr.division
+                      @emit attr.name, Number(message) / attr.division
+                    else
+                      @emit attr.name, Number(message)
+                  else
+                    @emit attr.name, message.toString()
       )
 
       for attr, i in @config.attributes
