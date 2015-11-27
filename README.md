@@ -63,6 +63,7 @@ Sample mqtt message
 {"rel_pressue": "30.5015", "wind_ave": "0.00", "rain": "0", "rainin": "0", "hum_in": "64", "temp_in_f": "66.4", "dailyrainin": "0", "wind_dir": "225", "temp_in_c": "19.1", "hum_out": "81", "dailyrain": "0", "wind_gust": "0.00", "idx": "2015-10-22 21:41:03", "temp_out_f": "49.6", "temp_out_c": "9.8"}
 
 Simple switch that publishes / subscribes to a state topic
+
     {
       "class": "MqttSimpleSwitch",
       "id": "light",
