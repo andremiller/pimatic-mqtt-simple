@@ -50,6 +50,11 @@ module.exports = (env) ->
         createCallback: (config) => return new MqttSimpleSensor(config)
       })
 
+      @framework.deviceManager.registerDeviceClass("MqttSimpleSwitch", {
+        configDef: deviceConfigDef.MqttSimpleSwitch,
+        createCallback: (config, lastState) => return new MqttSimpleSwitch(config, lastState)
+      })
+
   class MqttSimpleSensor extends env.devices.Sensor
     constructor: (@config) ->
       @name = config.name
@@ -131,6 +136,54 @@ module.exports = (env) ->
           @_createGetter(name, getter)
 
       super()
+
+  class MqttSimpleSwitch extends env.devices.PowerSwitch
+
+    mqttclient = null
+
+    constructor: (@config, @lastState) ->
+      @name = config.name
+      @id = config.id
+      @_state = lastState?.state?.value or off
+
+      mqttclient = mqtt.connect(config.mqtturl, {
+        protocolId: 'MQIsdp',
+        protocolVersion: 3
+      })
+
+      mqttclient.on('error', (error) =>
+        console.log("MQTT Error: " + error.toString());
+      )
+
+      mqttclient.on('connect', =>
+        if config.stateTopic == ""
+          mqttclient.subscribe(config.topic)
+        else
+          mqttclient.subscribe(config.stateTopic)
+      )
+
+      mqttclient.on('message', (topic, message) =>
+        switch message.toString()
+          when "on", "true", "1", "t", "o"
+            @_setState(on)
+            @_state = on
+            @emit @name, on
+          else
+            @_setState(off)
+            @_state = off
+            @emit @name, off
+      )
+      super()
+
+    changeStateTo: (state) ->
+
+      #if @state is state then return
+      # and execute it.
+      message = (if state then @config.onMessage else @config.offMessage)
+      mqttclient.publish(@config.topic, message)
+
+      @_setState(state)
+      return
 
   # ###Finally
   # Create a instance of my plugin
