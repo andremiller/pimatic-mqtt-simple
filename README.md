@@ -3,6 +3,10 @@ pimatic-mqtt-simple
 
 A very basic mqtt plugin for [Pimatic](http://www.pimatic.org/)
 
+NOTE: This project has been retired. However, wutu has created an mqtt plugin for pimatic with a lot more features than this simple one.
+
+You can find his plugin here: [pimatic-mqtt GitHub](https://github.com/wutu/pimatic-mqtt)
+
 Installation
 ------------
 Edit your config.json as below, and once you restart pimatic the plugin will be downloaded automatically from npm.
